@@ -3,7 +3,7 @@ import React, { useState, useCallback, useRef, Fragment } from 'react';
 import produce from 'immer'
 
 // =============== VARIABLES ===============
-const numRows = 25;
+const numRows = 26;
 const numColumns = 40;
 
 const operations = [

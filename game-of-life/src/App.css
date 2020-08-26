@@ -2,18 +2,19 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  border: 1px solid beige;
+  border: 0;
 }
 
 .App {
   text-align: center;
   background-color: #282c34;
-  padding-bottom: 7%;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 80vmin;
   pointer-events: none;
+  margin-top: -18%;
+  opacity: 0.1;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -29,11 +30,15 @@
   justify-content: space-between;
 }
 
+.img-flipped {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
 h1 {
   font-family: 'Metal Mania', cursive;
   font-size: 9rem;
   text-shadow: 2px 2px lawngreen;
-  color: black;
   display: flex;
 }
 
@@ -44,6 +49,8 @@ h1 img {
 .grid {
   display: flex;
   justify-content: center;
+  z-index: 1;
+  position: relative;
 }
 
 .grid-cells {
@@ -56,11 +63,16 @@ h1 img {
   width: 100%;
   display: flex;
   justify-content: space-evenly;
-
 }
+
 button {
   width: 75px;
   min-height: 25px;
+}
+
+.gifs-container {
+  margin-top: -20%;
+  padding-bottom: 5%;
 }
 
 /* .start-button {
@@ -68,6 +80,10 @@ button {
   min-height: 25px;
   
 } */
+
+.contra-guy {
+  width: 15%;
+}
 
 section {
   display: flex;
@@ -80,7 +96,13 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: firebrick;
+  background-color: black;
+}
+
+footer section {
+  width: 30%;
+  justify-content: center;
+  align-items: center;
 }
 
 footer section a{
@@ -90,8 +112,40 @@ footer section a{
   align-items: center;
 }
 
-.github-logo {
-  width: 10%;
+.top-section {
+  justify-content: flex-start;
+  margin-left: 1%;
+}
+
+.top-section img {
+  width:15%;
+}
+
+.middle-section {
+  width: 40%;
+  height: 15vh;
+  align-items: flex-end;
+  background-image: url(https://cdn.shopify.com/s/files/1/0822/1983/articles/lotr-boromir-pixel-art-pixel-art-lotr-boromir-lord-of-the-rings-fictional-character-pixel-8bit_1024x1024.png?v=1501223527);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 50%;
+}
+
+.middle-section p {
+  margin-bottom: -2%;
+  color: darkgreen;
+  font-size: 3.5rem;
+  font-family: 'Metal Mania', cursive;
+  text-shadow: 2px 2px lawngreen;
+}
+
+.bottom-section {
+  justify-content: flex-end;
+  margin-right: 1%;
+}
+
+.bottom-section img {
+  width: 75px;
 }
 
 @keyframes App-logo-spin {
