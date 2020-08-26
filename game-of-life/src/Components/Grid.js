@@ -4,7 +4,7 @@ import produce from 'immer'
 
 // =============== VARIABLES ===============
 const numRows = 25;
-const numColumns = 25;
+const numColumns = 50;
 
 const operations = [
     [0, 1],
@@ -95,17 +95,29 @@ function Grid() {
                             runningRef.current = true;
                             runSimulation();
                         }
-                    }}>{running ? 'Stop' : 'Start'}  
+                    }}>
+                    {running ? 'Stop' : 'Start'}
+                </button>
+                <button
+                    onClick={() => {
+                        const rows = [];
+                        for (let i = 0; i < numRows; i++) {
+                            rows.push(Array.from(Array(numColumns), () => (Math.random() > 0.8 ? 1: 0)))
+                        }
+                        
+                        setGrid(rows)
+                    }}>
+                    Random
                 </button>
                 <button
                     onClick={() => {
                         setGrid(generateEmptyGrid())
-                    }}
-                >Clear</button>
+                    }}>
+                    Clear
+                </button>
             </div>
         </Fragment>
     )
 }
-
 
 export default Grid;
