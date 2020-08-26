@@ -54,11 +54,22 @@ h1 img {
   border: 1px solid black;
 }
 
-.start-button {
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+
+}
+button {
+  width: 75px;
+  min-height: 25px;
+}
+
+/* .start-button {
   width: 75px;
   min-height: 25px;
   
-}
+} */
 
 footer {
   display: flex;

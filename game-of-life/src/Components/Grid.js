@@ -65,7 +65,7 @@ function Grid() {
                 }
             })
         })
-        setTimeout(runSimulation, 1000)
+        setTimeout(runSimulation, 200)
     }, [])
 
     return (
@@ -87,14 +87,22 @@ function Grid() {
                         </div>
                     )))}
             </div>
-            <button className="start-button"
-                onClick={() => {
-                    setRunning(!running);
-                    if (!running) {
-                        runningRef.current = true;
-                        runSimulation();
-                    }
-                }}>{running ? 'stop' : 'start'}</button>
+            <div className="buttons">
+                <button className="start-button"
+                    onClick={() => {
+                        setRunning(!running);
+                        if (!running) {
+                            runningRef.current = true;
+                            runSimulation();
+                        }
+                    }}>{running ? 'Stop' : 'Start'}  
+                </button>
+                <button
+                    onClick={() => {
+                        setGrid(generateEmptyGrid())
+                    }}
+                >Clear</button>
+            </div>
         </Fragment>
     )
 }
