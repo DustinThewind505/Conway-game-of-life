@@ -1,5 +1,5 @@
 // =============== IMPORTS ===============
-import React, { useState } from 'react';
+import React from 'react';
 import logo from './logo.svg';
 
 import Grid from './Components/Grid';
@@ -8,20 +8,10 @@ import './App.css';
 
 // =============== VARIABLES ===============
 
-// const numRows = 50;
-// const numColumns = 50;
+
 
 // =============== APP ===============
 function App() {
-  // const [grid, setGrid] = useState(() => {
-  //   const rows = [];
-    
-  //   for (let i = 0; i < numRows; i++) {
-  //     rows.push(Array.from(Array(numColumns).fill(0)))
-  //   }
-    
-  //   return rows
-  // })
 
 
   return (

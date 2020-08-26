@@ -8,6 +8,7 @@
 .App {
   text-align: center;
   background-color: #282c34;
+  padding-bottom: 7%;
 }
 
 .App-logo {
@@ -51,6 +52,12 @@ h1 img {
   width: 20px;
   height: 20px;
   border: 1px solid black;
+}
+
+.start-button {
+  width: 75px;
+  min-height: 25px;
+  
 }
 
 footer {
