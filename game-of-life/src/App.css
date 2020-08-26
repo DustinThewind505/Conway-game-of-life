@@ -2,7 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  border: 0;
+  border: 1px solid beige;
 }
 
 .App {
@@ -23,7 +23,6 @@
 }
 
 .App-header {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,7 +44,6 @@ h1 img {
 .grid {
   display: flex;
   justify-content: center;
-  margin-top: -25%;
 }
 
 .grid-cells {
@@ -71,10 +69,29 @@ button {
   
 } */
 
-footer {
+section {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+footer {
+  min-height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: firebrick;
+}
+
+footer section a{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.github-logo {
+  width: 10%;
 }
 
 @keyframes App-logo-spin {

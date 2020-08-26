@@ -4,7 +4,7 @@ import produce from 'immer'
 
 // =============== VARIABLES ===============
 const numRows = 25;
-const numColumns = 50;
+const numColumns = 40;
 
 const operations = [
     [0, 1],
