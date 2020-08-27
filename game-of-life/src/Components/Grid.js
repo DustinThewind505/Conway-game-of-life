@@ -1,5 +1,5 @@
 // =============== IMPORTS ===============
-import React, { useState, useCallback, useRef, Fragment } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import produce from 'immer'
 
 // =============== VARIABLES ===============
