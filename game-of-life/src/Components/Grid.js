@@ -69,7 +69,7 @@ function Grid() {
     }, [])
 
     return (
-        <Fragment>
+        <div className="grid-container">
 
             <div className="grid" style={{ display: "grid", gridTemplateColumns: `repeat(${numColumns}, 20px)` }}>
                 {grid.map((rows, i) =>
@@ -116,7 +116,7 @@ function Grid() {
                     Clear
                 </button>
             </div>
-        </Fragment>
+        </div>
     )
 }
 
