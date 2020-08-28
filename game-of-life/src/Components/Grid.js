@@ -33,7 +33,9 @@ function Grid() {
         return generateEmptyGrid();
     })
 
-    const [running, setRunning] = useState(false)
+    const [running, setRunning] = useState(false);
+
+    const [speed, setSpeed] = useState(100)
 
     const runningRef = useRef(running);
     runningRef.current = running
@@ -65,8 +67,8 @@ function Grid() {
                 }
             })
         })
-        setTimeout(runSimulation, 200)
-    }, [])
+        setTimeout(runSimulation, speed)
+    }, [speed])
 
     return (
         <div className="grid-container">
@@ -102,9 +104,9 @@ function Grid() {
                     onClick={() => {
                         const rows = [];
                         for (let i = 0; i < numRows; i++) {
-                            rows.push(Array.from(Array(numColumns), () => (Math.random() > 0.8 ? 1: 0)))
+                            rows.push(Array.from(Array(numColumns), () => (Math.random() > 0.8 ? 1 : 0)))
                         }
-                        
+
                         setGrid(rows)
                     }}>
                     Random
@@ -115,6 +117,9 @@ function Grid() {
                     }}>
                     Clear
                 </button>
+                <button onClick={() => setSpeed(1000)}>Slow</button>
+                <button onClick={() => setSpeed(100)}>Medium</button>
+                <button onClick={() => setSpeed(50)}>Fast</button>
             </div>
         </div>
     )

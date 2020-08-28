@@ -82,6 +82,12 @@ button {
   min-height: 25px;
 }
 
+button:hover {
+  background-color: black;
+  color: lawngreen;
+  transition: 0.2s;
+}
+
 main {
   display: flex;
   align-items: flex-end;
@@ -120,12 +126,6 @@ main section p {
   justify-content: center;
   align-items: center
 }
-
-/* .start-button {
-  width: 75px;
-  min-height: 25px;
-  
-} */
 
 .contra-guy {
   width: 50%;
