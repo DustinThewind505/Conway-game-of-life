@@ -102,6 +102,12 @@ function Grid() {
                 </button>
                 <button
                     onClick={() => {
+                        setGrid(generateEmptyGrid())
+                    }}>
+                    Clear
+                </button>
+                <button
+                    onClick={() => {
                         const rows = [];
                         for (let i = 0; i < numRows; i++) {
                             rows.push(Array.from(Array(numColumns), () => (Math.random() > 0.8 ? 1 : 0)))
@@ -111,15 +117,8 @@ function Grid() {
                     }}>
                     Random
                 </button>
-                <button
-                    onClick={() => {
-                        setGrid(generateEmptyGrid())
-                    }}>
-                    Clear
-                </button>
-                <button onClick={() => setSpeed(1000)}>Slow</button>
-                <button onClick={() => setSpeed(100)}>Medium</button>
-                <button onClick={() => setSpeed(50)}>Fast</button>
+                <button onClick={() => setSpeed(10)}>Faster</button>
+                <button onClick={() => setSpeed(2000)}>Slower</button>
             </div>
         </div>
     )
