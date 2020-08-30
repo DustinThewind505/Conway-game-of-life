@@ -89,9 +89,14 @@ button:hover {
 }
 
 .color-picker  {
-  background-color: yellow;
+  background-color: none;
   width:100px;
   height: 100px;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  left: 1%;
+  bottom: -70%;
 }
 
 main {
@@ -144,7 +149,7 @@ section {
 }
 
 footer {
-  min-height: 10vh;
+  min-height: 18vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -171,6 +176,7 @@ footer section a{
 
 .top-section img {
   width:20%;
+  display: none;
 }
 
 .middle-section {

@@ -1,5 +1,5 @@
 // =============== IMPORTS ===============
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef, Fragment } from 'react';
 import produce from 'immer';
 
 import ColorPicker from './colorPicker';
@@ -41,7 +41,7 @@ function Grid() {
 
     const [running, setRunning] = useState(false);
 
-const [speed, setSpeed] = useState(100);
+    const [speed, setSpeed] = useState(100);
 
     const runningRef = useRef(running);
     runningRef.current = running
@@ -77,57 +77,61 @@ const [speed, setSpeed] = useState(100);
     }, [speed])
 
     return (
-        <div className="grid-container">
+        <Fragment>
+            <div className="grid-container">
 
-            <div className="grid" style={{ display: "grid", gridTemplateColumns: `repeat(${numColumns}, 20px)` }}>
-                {grid.map((rows, i) =>
-                    rows.map((col, k) => (
-                        <div className="grid-cells" key={`${i}-${k}`} onClick={() => {
-                            const newGrid = produce(grid, gridCopy => {
-                                gridCopy[i][k] = grid[i][k] ? 0 : 1;
-                            });
-                            setGrid(newGrid);
-                        }}
-                            style={{
-                                backgroundColor: grid[i][k] ? color : undefined,
-                            }}>
+                <div className="grid" style={{ display: "grid", gridTemplateColumns: `repeat(${numColumns}, 20px)` }}>
+                    {grid.map((rows, i) =>
+                        rows.map((col, k) => (
+                            <div className="grid-cells" key={`${i}-${k}`} onClick={() => {
+                                const newGrid = produce(grid, gridCopy => {
+                                    gridCopy[i][k] = grid[i][k] ? 0 : 1;
+                                });
+                                setGrid(newGrid);
+                            }}
+                                style={{
+                                    backgroundColor: grid[i][k] ? color : undefined,
+                                }}>
 
-                        </div>
-                    )))}
+                            </div>
+                        )))}
+                </div>
+                <div className="buttons">
+                    <button className="start-button"
+                        onClick={() => {
+                            setRunning(!running);
+                            if (!running) {
+                                runningRef.current = true;
+                                runSimulation();
+                            }
+                        }}>
+                        {running ? 'Stop' : 'Start'}
+                    </button>
+                    <button
+                        onClick={() => {
+                            setGrid(generateEmptyGrid())
+                        }}>
+                        Clear
+                </button>
+                    <button
+                        onClick={() => {
+                            const rows = [];
+                            for (let i = 0; i < numRows; i++) {
+                                rows.push(Array.from(Array(numColumns), () => (Math.random() > 0.8 ? 1 : 0)))
+                            }
+
+                            setGrid(rows)
+                        }}>
+                        Random
+                </button>
+                    <button onClick={() => setSpeed(10)}>Fast</button>
+                    <button onClick={() => setSpeed(1500)}>Slow</button>
+                </div>
             </div>
-            <div className="buttons">
-                <button className="start-button"
-                    onClick={() => {
-                        setRunning(!running);
-                        if (!running) {
-                            runningRef.current = true;
-                            runSimulation();
-                        }
-                    }}>
-                    {running ? 'Stop' : 'Start'}
-                </button>
-                <button
-                    onClick={() => {
-                        setGrid(generateEmptyGrid())
-                    }}>
-                    Clear
-                </button>
-                <button
-                    onClick={() => {
-                        const rows = [];
-                        for (let i = 0; i < numRows; i++) {
-                            rows.push(Array.from(Array(numColumns), () => (Math.random() > 0.8 ? 1 : 0)))
-                        }
-
-                        setGrid(rows)
-                    }}>
-                    Random
-                </button>
-                <button onClick={() => setSpeed(10)}>Fast</button>
-                <button onClick={() => setSpeed(1500)}>Slow</button>
+            <div>
                 <ColorPicker color={color} setColor={setColor} />
             </div>
-        </div>
+        </Fragment>
     )
 }
 
