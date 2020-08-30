@@ -88,6 +88,12 @@ button:hover {
   transition: 0.2s;
 }
 
+.color-picker  {
+  background-color: yellow;
+  width:100px;
+  height: 100px;
+}
+
 main {
   display: flex;
   align-items: flex-end;
@@ -168,11 +174,11 @@ footer section a{
 }
 
 .middle-section {
-  width: 50%;
+  width: 67%;
   height: 15vh;
   align-items: flex-end;
-  background-image: url(https://cdn.shopify.com/s/files/1/0822/1983/articles/lotr-boromir-pixel-art-pixel-art-lotr-boromir-lord-of-the-rings-fictional-character-pixel-8bit_1024x1024.png?v=1501223527);
-  background-position: center;
+  background-image: url(https://cdn.shopify.com/s/files/1/0822/1983/articles/lotr-aragorn-pixel-art-pixel-art-lotr-aragorn-lord-of-the-rings-fictional-character-pixel-8bit.png?v=1475044819);
+  background-position: top;
   background-repeat: no-repeat;
   background-size: 35%;
 }
@@ -190,8 +196,6 @@ footer section a{
 }
 
 .bottom-section a {
-  background-color: black;
-  color: indigo;
   border-radius: 5px;
   text-decoration: none;
   transition: 0.3s;

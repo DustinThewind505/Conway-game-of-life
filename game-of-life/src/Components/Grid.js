@@ -1,6 +1,8 @@
 // =============== IMPORTS ===============
 import React, { useState, useCallback, useRef } from 'react';
-import produce from 'immer'
+import produce from 'immer';
+
+import ColorPicker from './colorPicker';
 
 // =============== VARIABLES ===============
 const numRows = 26;
@@ -16,6 +18,8 @@ const operations = [
     [1, 0],
     [-1, 0],
 ]
+
+
 
 const generateEmptyGrid = () => {
     const rows = [];
@@ -33,9 +37,11 @@ function Grid() {
         return generateEmptyGrid();
     })
 
+    const [color, setColor] = useState('black');
+
     const [running, setRunning] = useState(false);
 
-    const [speed, setSpeed] = useState(100)
+const [speed, setSpeed] = useState(100);
 
     const runningRef = useRef(running);
     runningRef.current = running
@@ -83,7 +89,7 @@ function Grid() {
                             setGrid(newGrid);
                         }}
                             style={{
-                                backgroundColor: grid[i][k] ? "yellow" : undefined,
+                                backgroundColor: grid[i][k] ? color : undefined,
                             }}>
 
                         </div>
@@ -117,8 +123,9 @@ function Grid() {
                     }}>
                     Random
                 </button>
-                <button onClick={() => setSpeed(10)}>Faster</button>
-                <button onClick={() => setSpeed(2000)}>Slower</button>
+                <button onClick={() => setSpeed(10)}>Fast</button>
+                <button onClick={() => setSpeed(1500)}>Slow</button>
+                <ColorPicker color={color} setColor={setColor} />
             </div>
         </div>
     )
