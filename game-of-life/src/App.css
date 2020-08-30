@@ -72,7 +72,8 @@ h3 {
 }
 
 .buttons {
-  width: 100%;
+  width: 65%;
+  margin: 0 auto;
   display: flex;
   justify-content: space-evenly;
 }
@@ -96,7 +97,7 @@ button:hover {
   margin: 0;
   padding: 0;
   left: 1%;
-  bottom: -70%;
+  bottom: -73.2%;
 }
 
 main {
@@ -175,7 +176,7 @@ footer section a{
 }
 
 .top-section img {
-  width:20%;
+  width: 20%;
   display: none;
 }
 

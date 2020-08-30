@@ -1,10 +1,7 @@
 // =============== IMPORTS ===============
 import React from 'react';
 
-
-// =============== VARIABLES ===============
-
-// =============== APP ============
+// =============== COMPONENT ============
 function Grid({ grid, numColumns, setGrid, color, produce }) {
 
     return (

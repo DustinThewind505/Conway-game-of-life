@@ -1,5 +1,5 @@
 // =============== IMPORTS ===============
-import React, {useState, useCallback, useRef, Fragment } from 'react';
+import React, { useState, useCallback, useRef, Fragment } from 'react';
 import logo from './logo.svg';
 
 import produce from 'immer';
@@ -7,6 +7,7 @@ import ColorPicker from './Components/colorPicker';
 
 import Header from './Components/Header';
 import Grid from './Components/Grid';
+import Buttons from './Components/Buttons'
 import Footer from './Components/Footer';
 import './App.css';
 
@@ -27,7 +28,7 @@ const operations = [
 ]
 
 
-
+// =============== FUNCTIONS ===============
 const generateEmptyGrid = () => {
   const rows = [];
 
@@ -41,15 +42,14 @@ const generateEmptyGrid = () => {
 
 // =============== APP ===============
 function App() {
+
+  // ===== Storing state =====
+  const [color, setColor] = useState('black');
+  const [running, setRunning] = useState(false);
+  const [speed, setSpeed] = useState(100);
   const [grid, setGrid] = useState(() => {
     return generateEmptyGrid();
   })
-
-  const [color, setColor] = useState('black');
-
-  const [running, setRunning] = useState(false);
-
-  const [speed, setSpeed] = useState(100);
 
   const runningRef = useRef(running);
   runningRef.current = running
@@ -97,12 +97,12 @@ function App() {
             <p>4. Any dead cell with exactly 3 live neighbors becomes a live cell, as if by reproduction.</p>
             <img className="contra-guy img-flipped" src="https://vignette.wikia.nocookie.net/contra/images/b/ba/BillRizerRuns.gif/revision/latest?cb=20171207035248" alt="contra guy" />
           </section>
-          <Grid 
-          grid={grid}
-          numColumns={numColumns}
-          setGrid={setGrid}
-          color={color}
-          produce={produce}
+          <Grid
+            grid={grid}
+            numColumns={numColumns}
+            setGrid={setGrid}
+            color={color}
+            produce={produce}
           />
           <section>
             <h3>About</h3>
@@ -110,40 +110,20 @@ function App() {
             <img className="contra-guy" src="https://vignette.wikia.nocookie.net/contra/images/b/ba/BillRizerRuns.gif/revision/latest?cb=20171207035248" alt="contra guy" />
           </section>
         </main>
-        <div className="buttons">
-                    <button className="start-button"
-                        onClick={() => {
-                            setRunning(!running);
-                            if (!running) {
-                                runningRef.current = true;
-                                runSimulation();
-                            }
-                        }}>
-                        {running ? 'Stop' : 'Start'}
-                    </button>
-                    <button
-                        onClick={() => {
-                            setGrid(generateEmptyGrid())
-                        }}>
-                        Clear
-                </button>
-                    <button
-                        onClick={() => {
-                            const rows = [];
-                            for (let i = 0; i < numRows; i++) {
-                                rows.push(Array.from(Array(numColumns), () => (Math.random() > 0.8 ? 1 : 0)))
-                            }
-
-                            setGrid(rows)
-                        }}>
-                        Random
-                </button>
-                    <button onClick={() => setSpeed(10)}>Fast</button>
-                    <button onClick={() => setSpeed(1500)}>Slow</button>
-                </div>
-            <div>
-                <ColorPicker color={color} setColor={setColor} />
-            </div>
+        <Buttons
+          running={running}
+          setRunning={setRunning}
+          runningRef={runningRef}
+          runSimulation={runSimulation}
+          setGrid={setGrid}
+          generateEmptyGrid={generateEmptyGrid}
+          numRows={numRows}
+          numColumns={numColumns}
+          setSpeed={setSpeed}
+        />
+        <div>
+          <ColorPicker color={color} setColor={setColor} />
+        </div>
         <div className="gifs-container">
           <img src={logo} className="App-logo" alt="react logo" />
         </div>
