@@ -1,83 +1,13 @@
 // =============== IMPORTS ===============
-import React, { useState, useCallback, useRef, Fragment } from 'react';
-import produce from 'immer';
+import React from 'react';
 
-import ColorPicker from './colorPicker';
 
 // =============== VARIABLES ===============
-const numRows = 26;
-const numColumns = 40;
-
-const operations = [
-    [0, 1],
-    [0, -1],
-    [1, -1],
-    [-1, 1],
-    [1, 1],
-    [-1, -1],
-    [1, 0],
-    [-1, 0],
-]
-
-
-
-const generateEmptyGrid = () => {
-    const rows = [];
-
-    for (let i = 0; i < numRows; i++) {
-        rows.push(Array.from(Array(numColumns).fill(0)))
-    }
-
-    return rows
-}
 
 // =============== APP ============
-function Grid() {
-    const [grid, setGrid] = useState(() => {
-        return generateEmptyGrid();
-    })
-
-    const [color, setColor] = useState('black');
-
-    const [running, setRunning] = useState(false);
-
-    const [speed, setSpeed] = useState(100);
-
-    const runningRef = useRef(running);
-    runningRef.current = running
-
-    const runSimulation = useCallback(() => {
-        if (!runningRef.current) {
-            return;
-        }
-
-        setGrid((g) => {
-            return produce(g, gridCopy => {
-                for (let i = 0; i < numRows; i++) {
-                    for (let j = 0; j < numColumns; j++) {
-                        let neighbors = 0;
-                        operations.forEach(([x, y]) => {
-                            const newI = i + x;
-                            const newJ = j + y;
-                            if (newI >= 0 && newI < numRows && newJ >= 0 && newJ < numColumns) {
-                                neighbors += g[newI][newJ]
-                            }
-                        })
-
-                        if (neighbors < 2 || neighbors > 3) {
-                            gridCopy[i][j] = 0;
-                        } else if (g[i][j] === 0 && neighbors === 3) {
-                            gridCopy[i][j] = 1;
-                        }
-                    }
-                }
-            })
-        })
-        setTimeout(runSimulation, speed)
-    }, [speed])
+function Grid({ grid, numColumns, setGrid, color, produce }) {
 
     return (
-        <Fragment>
             <div className="grid-container">
 
                 <div className="grid" style={{ display: "grid", gridTemplateColumns: `repeat(${numColumns}, 20px)` }}>
@@ -96,42 +26,8 @@ function Grid() {
                             </div>
                         )))}
                 </div>
-                <div className="buttons">
-                    <button className="start-button"
-                        onClick={() => {
-                            setRunning(!running);
-                            if (!running) {
-                                runningRef.current = true;
-                                runSimulation();
-                            }
-                        }}>
-                        {running ? 'Stop' : 'Start'}
-                    </button>
-                    <button
-                        onClick={() => {
-                            setGrid(generateEmptyGrid())
-                        }}>
-                        Clear
-                </button>
-                    <button
-                        onClick={() => {
-                            const rows = [];
-                            for (let i = 0; i < numRows; i++) {
-                                rows.push(Array.from(Array(numColumns), () => (Math.random() > 0.8 ? 1 : 0)))
-                            }
 
-                            setGrid(rows)
-                        }}>
-                        Random
-                </button>
-                    <button onClick={() => setSpeed(10)}>Fast</button>
-                    <button onClick={() => setSpeed(1500)}>Slow</button>
-                </div>
             </div>
-            <div>
-                <ColorPicker color={color} setColor={setColor} />
-            </div>
-        </Fragment>
     )
 }
 
