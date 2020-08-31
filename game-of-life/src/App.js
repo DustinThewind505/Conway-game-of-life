@@ -50,6 +50,9 @@ const generateEmptyGrid = () => {
 function App() {
 
   // === Storing State ===
+
+  const [genCount, setGenCount] = useState(0);
+  const generationCount = 0;
   // Change Color Feature
   const [color, setColor] = useState('black');
   // Change Speed Feature
@@ -63,6 +66,10 @@ function App() {
     return generateEmptyGrid();
   })
 
+  //Stores Up To Date Generation Count
+  const generationCountRef = useRef(generationCount);
+  generationCountRef.current = generationCount;
+
   // Stores Up To Date Refrence to On/Off State
   const runningRef = useRef(running);
   runningRef.current = running
@@ -72,6 +79,9 @@ function App() {
     if (!runningRef.current) {
       return;
     }
+
+    // Adds to Generation Count for Each Simulation
+    setGenCount((genCount) => (genCount += 1));
 
     // === Game Rules Logic ===
     setGrid((g) => {
@@ -94,7 +104,7 @@ function App() {
             // Changes Living Cell to Dead Cell
             if (neighbors < 2 || neighbors > 3) {
               gridCopy[i][j] = 0;
-            // Changes Dead Cell to Living Cell
+              // Changes Dead Cell to Living Cell
             } else if (g[i][j] === 0 && neighbors === 3) {
               gridCopy[i][j] = 1;
             }
@@ -152,6 +162,9 @@ function App() {
         <h2>Life Finds A Way</h2>
       </div>
       <Footer />
+      <div>
+        <h4>{`Generation No. : ${genCount}`}</h4>
+      </div>
     </Fragment>
   );
 }

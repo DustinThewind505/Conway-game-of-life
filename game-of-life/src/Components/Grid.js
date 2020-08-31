@@ -6,7 +6,7 @@ function Grid({ grid, numColumns, setGrid, color, produce }) {
 
     return (
             <div className="grid-container">
-
+                {/* === Display Created Grid === */}
                 <div className="grid" style={{ display: "grid", gridTemplateColumns: `repeat(${numColumns}, 20px)` }}>
                     {grid.map((rows, i) =>
                         rows.map((col, k) => (
