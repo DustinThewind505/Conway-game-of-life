@@ -2,20 +2,25 @@
 import React, { useState, useCallback, useRef, Fragment } from 'react';
 import logo from './logo.svg';
 
-import produce from 'immer';
-import ColorPicker from './Components/colorPicker';
+// === Third Party ===
+import produce from 'immer'; //<-- Produces Copies for Mutability
 
+// === Components ===
 import Header from './Components/Header';
 import Grid from './Components/Grid';
 import Buttons from './Components/Buttons'
 import Footer from './Components/Footer';
+import ColorPicker from './Components/colorPicker';
 import './App.css';
 
 
 // =============== VARIABLES ===============
+
+// Number of Rows and Columns in Grid
 const numRows = 26;
 const numColumns = 40;
 
+// Defines Neighbours Around a Living Cell
 const operations = [
   [0, 1],
   [0, -1],
@@ -29,6 +34,7 @@ const operations = [
 
 
 // =============== FUNCTIONS ===============
+// === Creates the Grid ===
 const generateEmptyGrid = () => {
   const rows = [];
 
@@ -43,27 +49,41 @@ const generateEmptyGrid = () => {
 // =============== APP ===============
 function App() {
 
-  // ===== Storing state =====
+  // === Storing State ===
+  // Change Color Feature
   const [color, setColor] = useState('black');
-  const [running, setRunning] = useState(false);
+  // Change Speed Feature
   const [speed, setSpeed] = useState(100);
+
+  // Change On/Off State
+  const [running, setRunning] = useState(false);
+
+  // Creates the Empty Grid 
   const [grid, setGrid] = useState(() => {
     return generateEmptyGrid();
   })
 
+  // Stores Up To Date Refrence to On/Off State
   const runningRef = useRef(running);
   runningRef.current = running
 
+  // Makes Sure Function is Called Only When Needed
   const runSimulation = useCallback(() => {
     if (!runningRef.current) {
       return;
     }
 
+    // === Game Rules Logic ===
     setGrid((g) => {
+      // Produce a New Grid Copy
       return produce(g, gridCopy => {
+
+        // Nested For Loops to Search Entire Grid
         for (let i = 0; i < numRows; i++) {
           for (let j = 0; j < numColumns; j++) {
             let neighbors = 0;
+
+            // Checking Bounderies for Neighbours
             operations.forEach(([x, y]) => {
               const newI = i + x;
               const newJ = j + y;
@@ -71,9 +91,10 @@ function App() {
                 neighbors += g[newI][newJ]
               }
             })
-
+            // Changes Living Cell to Dead Cell
             if (neighbors < 2 || neighbors > 3) {
               gridCopy[i][j] = 0;
+            // Changes Dead Cell to Living Cell
             } else if (g[i][j] === 0 && neighbors === 3) {
               gridCopy[i][j] = 1;
             }
@@ -81,6 +102,7 @@ function App() {
         }
       })
     })
+    // === Runs Simulation ===
     setTimeout(runSimulation, speed)
   }, [speed])
 

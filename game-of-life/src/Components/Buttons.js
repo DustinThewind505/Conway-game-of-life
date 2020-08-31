@@ -19,6 +19,7 @@ function buttons({
                 onClick={() => {
                     setRunning(!running);
                     if (!running) {
+                        // Up To Date On/Off State Refrence
                         runningRef.current = true;
                         runSimulation();
                     }
@@ -31,6 +32,7 @@ function buttons({
                 }}>
                 Clear
             </button>
+            {/* =============== Randomize Feature =============== */}
             <button
                 onClick={() => {
                     const rows = [];
@@ -42,6 +44,7 @@ function buttons({
                 }}>
                 Random
             </button>
+            {/* =============== Change Speed Feature =============== */}
             <button onClick={() => setSpeed(10)}>Fast</button>
             <button onClick={() => setSpeed(1500)}>Slow</button>
         </div>

@@ -1,7 +1,7 @@
+// =============== IMPORTS ===============
 import React from 'react';
 
-
-
+// =============== Component ===============
 function footer() {
 
 
