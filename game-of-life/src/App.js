@@ -10,7 +10,7 @@ import Header from './Components/Header';
 import Grid from './Components/Grid';
 import Buttons from './Components/Buttons'
 import Footer from './Components/Footer';
-import ColorPicker from './Components/colorPicker';
+//import ColorPicker from './Components/colorPicker';
 import './App.css';
 
 
@@ -50,11 +50,6 @@ const generateEmptyGrid = () => {
 function App() {
 
   // === Storing State ===
-
-  const [genCount, setGenCount] = useState(0);
-  const generationCount = 0;
-  // Change Color Feature
-  const [color, setColor] = useState('black');
   // Change Speed Feature
   const [speed, setSpeed] = useState(100);
 
@@ -66,10 +61,6 @@ function App() {
     return generateEmptyGrid();
   })
 
-  //Stores Up To Date Generation Count
-  const generationCountRef = useRef(generationCount);
-  generationCountRef.current = generationCount;
-
   // Stores Up To Date Refrence to On/Off State
   const runningRef = useRef(running);
   runningRef.current = running
@@ -79,9 +70,6 @@ function App() {
     if (!runningRef.current) {
       return;
     }
-
-    // Adds to Generation Count for Each Simulation
-    setGenCount((genCount) => (genCount += 1));
 
     // === Game Rules Logic ===
     setGrid((g) => {
@@ -133,7 +121,6 @@ function App() {
             grid={grid}
             numColumns={numColumns}
             setGrid={setGrid}
-            color={color}
             produce={produce}
           />
           <section>
@@ -153,18 +140,12 @@ function App() {
           numColumns={numColumns}
           setSpeed={setSpeed}
         />
-        <div>
-          <ColorPicker color={color} setColor={setColor} />
-        </div>
         <div className="gifs-container">
           <img src={logo} className="App-logo" alt="react logo" />
         </div>
         <h2>Life Finds A Way</h2>
       </div>
       <Footer />
-      <div>
-        <h4>{`Generation No. : ${genCount}`}</h4>
-      </div>
     </Fragment>
   );
 }

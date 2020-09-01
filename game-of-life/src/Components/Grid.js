@@ -2,7 +2,7 @@
 import React from 'react';
 
 // =============== COMPONENT ============
-function Grid({ grid, numColumns, setGrid, color, produce }) {
+function Grid({ grid, numColumns, setGrid, produce }) {
 
     return (
             <div className="grid-container">
@@ -19,7 +19,7 @@ function Grid({ grid, numColumns, setGrid, color, produce }) {
                                 setGrid(newGrid);
                             }}
                                 style={{
-                                    backgroundColor: grid[i][k] ? color : undefined,
+                                    backgroundColor: grid[i][k] ? 'yellow' : undefined,
                                 }}>
 
                             </div>
